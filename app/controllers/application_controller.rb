@@ -28,8 +28,12 @@ class ApplicationController < ActionController::API
   # }
 
   def send_email
-
-
+    if ApplicationMailer.notification(params).deliver
+      @response       = {success: true}
+      _render_response
+    else
+      raise EmailServices::EmailServiceError, "Sorry, something went wrong while sending your email."
+    end
   end
 
   private
@@ -66,6 +70,15 @@ class ApplicationController < ActionController::API
     wrapper = ActionDispatch::ExceptionWrapper.new(nil, exception)
     trace   = wrapper.application_trace
     trace   = wrapper.framework_trace if trace.empty?
+    
+    case exception
+    when EmailServices::UnauthenticatedError
+        @response[:errors][:code]     = :authentication_error
+    when EmailServices::MissingFieldsError
+        @response[:errors][:code]     = :missing_fields
+    when EmailServices::InvalidEmailError
+        @response[:errors][:code]     = :invalid_email
+    end
 
     @response[:errors][:code]     ||= :email_error
     @response[:errors][:message]  ||= [exception.message]

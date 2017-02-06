@@ -3,3 +3,14 @@ permitted_org_emails:
   - "support@mybrightwheel.com"
 
 default_email_service: "mailgun"
+# when you need to fail over email service, comment out the line above and uncomment below
+# default_email_service: "mandrill"
+
+mailgun:
+  port: 587
+  address: "smtp.mailgun.org"
+
+mandrill:
+  port: 587
+  address: "smtp.mandrillapp.com"
+  authentication: 'login'
