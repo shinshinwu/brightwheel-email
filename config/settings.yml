@@ -1,3 +1,5 @@
 permitted_org_emails:
   - "noreply@mybrightwheel.com"
   - "support@mybrightwheel.com"
+
+default_email_service: "mailgun"

@@ -23,6 +23,12 @@ gem 'puma', '~> 3.0'
 # simple gem to add some configuration from yml file
 gem 'config',                  '~> 1.4'
 
+# making http requests
+gem 'rest-client',             '~> 2.0.0'
+
+# generic mailer helper
+gem 'mail',                    '~> 2.6.4'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -30,6 +36,8 @@ group :development, :test do
   # better error logging with commands such as step
   gem 'pry-rails',                              '~> 0.3.4'
 
+  # app secret storage
+  gem 'dotenv-rails'
 end
 
 group :development do

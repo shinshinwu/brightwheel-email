@@ -36,7 +36,7 @@ class ApplicationController < ActionController::API
 
   def authenticate_request
     # in full scale app, you would probably would want to authenticate request against real user database
-    raise EmailServices::UnauthenticatedError, "Sorry your request is unauthenticated." unless params[:token] == "wearebright"
+    raise EmailServices::UnauthenticatedError, "Sorry your request is unauthenticated." unless params[:token] == "yeswearebright"
   end
 
   def validate_params
