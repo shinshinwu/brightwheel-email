@@ -1,24 +1,32 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Reason for rails api: brightwheel is a rails shop :)
 
-Things you may want to cover:
+2. Setup:
+ Please follow standard rails setup, `bundle` first, then `rake db:create`
+ To set up mailer, the app expect ENV variables for mailer user name and password. One way you can load the credentials is by creating `.env` file and add things like
+ ```
+  MAILGUN_USER="****"
+  MAILGUN_PW="*****"
+  MANDRILL_USESR="********"
+  MANDRILL_PW="*******"
+ ```
+ post request to `/email` will provide stack trace in development to help debug if something goes wrong. It will be masked for production.
+ 
+3. Switching/adding email services:
+  You can change default email service simply by update the `default_email_service` value in settings.yml and redeploy.
+  To add/remove email services, simply add appropriate ENV credentials and add settings to the settings.yml file.
+ 
+4. Tests:
+  Simply run `rspec spec/`.
+  
+5. Improvements:
+  If there are more time, few more things would be nice to address:
+  - send to email address should be validated with the existing user database.
+  - move email service credential and settings to database to manage as it allows switching default provider without redeploy
+  - set up monitor to email service provider status and change default email service in database when status page report. outage or we receive too many errors.
+  - email deliver probably can be delivered by worker instead of immediately.
+  - create API documentation
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Please don't hesitate to ask if you have questions!
