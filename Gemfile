@@ -26,9 +26,6 @@ gem 'config',                  '~> 1.4'
 # making http requests
 gem 'rest-client',             '~> 2.0.0'
 
-# generic mailer helper
-gem 'mail',                    '~> 2.6.4'
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -46,4 +43,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
+end
+
+group :test do
+  gem 'rspec-rails',                            '~> 3.5.2'
 end
