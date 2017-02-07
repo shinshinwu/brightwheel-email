@@ -11,7 +11,7 @@
   MANDRILL_USESR="********"
   MANDRILL_PW="*******"
  ```
- post request to `/email` will provide stack trace in development to help debug if something goes wrong. It will be masked for production.
+ post request to `/email` will provide stack trace in development to help debug if something goes wrong. Please remember to include a "secret" token set to `token: "yeswearebright"` in your request. Otherwise you will run into authentication error. Stack traces will be masked for production.
  
 3. Switching/adding email services:
   You can change default email service simply by update the `default_email_service` value in settings.yml and redeploy.
@@ -22,6 +22,7 @@
   
 5. Improvements:
   If there are more time, few more things would be nice to address:
+  - auth token for the post request should probably be generated as API key and secret of some sort.
   - send to email address should be validated with the existing user database.
   - move email service credential and settings to database to manage as it allows switching default provider without redeploy
   - set up monitor to email service provider status and change default email service in database when status page report. outage or we receive too many errors.
